@@ -28,7 +28,6 @@ module.exports = function (passport) {
             user = await User.create(newUser);
             done(null, user);
           }
-          console.log(newUser);
         } catch (err) {
           console.error(err);
         }
@@ -48,6 +47,5 @@ module.exports = function (passport) {
     } catch (err) {
       console.error(err, null);
     }
-    // User.findById(id, (err, user) => done(err, user));
   });
 };

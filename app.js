@@ -8,8 +8,10 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const connectDB = require("./config/database");
 const homeRoutes = require("./routes/home.js");
+const authRoutes = require("./routes/auth.js");
 const noteRoutes = require("./routes/note.js");
 const passport = require("passport");
+const path = require("path");
 
 dotenv.config({ path: "./config/.env" });
 
@@ -20,8 +22,8 @@ connectDB();
 
 // Set View Engine
 app.set("view engine", "ejs");
-app.use(morgan("tiny"));
-app.use(express.static("public"));
+app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -45,7 +47,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", homeRoutes);
-app.use("/auth", require("./routes/auth"));
+app.use("/auth", authRoutes);
 app.use("/notes", noteRoutes);
 
 app.listen(PORT, () => {

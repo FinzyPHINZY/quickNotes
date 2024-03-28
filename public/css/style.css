@@ -70,4 +70,10 @@ select {
   width: 950px;
   max-width: 90%;
   margin: 0 auto;
+  background: lime;
+  padding: 10px;
+}
+
+p {
+  margin: 10px 0;
 }
