@@ -46,7 +46,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", homeRoutes);
+app.use("/", homeRoutes);
 app.use("/auth", authRoutes);
 app.use("/notes", noteRoutes);
 
