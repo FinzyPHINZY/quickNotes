@@ -14,6 +14,6 @@ router.get("/", ensureGuest, homeController.getLogin);
 
 // @desc    Dashboard
 // @route   GET /index
-router.get("index", ensureAuth, homeController.getHome);
+router.get("/index", ensureAuth, homeController.getHome);
 
 module.exports = router;
