@@ -12,7 +12,7 @@ const Note = require("../models/Note");
 // @route   GET /
 router.get("/", ensureGuest, homeController.getLogin);
 
-// @desc    Dashboard
+// @desc    Homepage
 // @route   GET /index
 router.get("/index", ensureAuth, homeController.getHome);
 

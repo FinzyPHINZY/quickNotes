@@ -32,7 +32,10 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: false,
-    // store: MongoStore.create({ mongoUrl: process.env.MONGODB_STRING }),
+    cookie: {
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    },
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_STRING }),
   })
 );
 

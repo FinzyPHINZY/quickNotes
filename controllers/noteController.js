@@ -105,7 +105,7 @@ module.exports = {
         res.redirect("/stories");
       } else {
         await Story.deleteOne({ _id: req.params.id });
-        res.redirect("/dashboard");
+        res.redirect("/index");
       }
     } catch (err) {
       console.error(err);
