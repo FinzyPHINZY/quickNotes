@@ -3,7 +3,7 @@ const Note = require("../models/Note");
 module.exports = {
   showNotes: async (req, res) => {
     try {
-      const notes = await Note.find()
+      const notes = await Note.find({ user: req.user.id })
         .populate("user")
         .sort({ createdAt: "desc" });
       res.render("notes/index", {
@@ -14,6 +14,7 @@ module.exports = {
       res.render("error/500");
     }
   },
+
   showAdd: (req, res) => {
     res.render("notes/add");
   },
@@ -22,7 +23,7 @@ module.exports = {
     try {
       req.body.user = req.user.id;
       await Note.create(req.body);
-      res.redirect("/index");
+      res.redirect("notes");
     } catch (err) {
       console.error(err);
       res.render("error/500");
@@ -31,7 +32,7 @@ module.exports = {
 
   showSingleNote: async (req, res) => {
     try {
-      let note = await Note.findById(req.params.id).populate("user");
+      let note = await Note.findById(req.params._id).populate("user");
 
       if (!note) {
         return res.render("error/404");

@@ -7,10 +7,10 @@ module.exports = {
 
   getHome: async (req, res) => {
     try {
-      // const notes = await Note.find({ user: req.user.id });
+      const notes = await Note.find({ user: req.user.id });
       res.render("index", {
-        // name: req.user.firstName,
-        // notes,
+        name: req.user.firstName,
+        notes,
       });
     } catch (err) {
       console.error("homepage error", err);

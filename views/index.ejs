@@ -16,12 +16,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <%- include('./partials/navBar') %>
+    <%- include('./partials/navBar') %> <%- include('./partials/addBtn') %>
     <div class="container">
-      <h1>Welcome to quickNotes...</h1>
-      <p>Let's get you started</p>
-
-      <p><a href="/auth/logout">Logout</a></p>
+      <h1>Hey <%= name %></h1>
+      <h6>Welcome to quickNotes</h6>
+      <button><a href="notes">Your notes</a></button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

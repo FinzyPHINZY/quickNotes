@@ -5,11 +5,11 @@ const noteController = require("../controllers/noteController");
 const Note = require("../models/Note");
 
 // @desc         Show all notes
-// @route        GET /
+// @route        GET /notes
 router.get("/", ensureAuth, noteController.showNotes);
 
 // @desc         Show add page
-// @route        GET /note/add
+// @route        GET /notes/add
 router.get("/add", ensureAuth, noteController.showAdd);
 
 // @desc         Process add form
@@ -17,7 +17,7 @@ router.get("/add", ensureAuth, noteController.showAdd);
 router.post("/", ensureAuth, noteController.addNote);
 
 // @desc         Show single note
-// @route        GET /note/:id
+// @route        GET /notes/:id
 router.get("/:id", ensureAuth, noteController.showSingleNote);
 
 // @desc         Show edit page
