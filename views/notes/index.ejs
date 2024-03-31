@@ -30,7 +30,17 @@
             >:
             <span><%- stripTags(truncate(note.body,150)) %></span>
             <span><%- formatDate(note.createdAt) %></span>
-            <span><i class="fas fa-trash"></i></span>
+            <form
+              action="/notes/delete/<%= note._id %>"
+              method="post"
+              id="delete-form"
+            >
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="btn-red">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+
             <span>
               <a href="/notes/<%= note._id %>" class="btn-grey">Read more</a>
             </span>

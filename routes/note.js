@@ -30,6 +30,6 @@ router.put("/:id", ensureAuth, noteController.updateNote);
 
 // @desc        Delete Note
 // @route        Delete /notes/:id
-router.delete("/:id", ensureAuth, noteController.deleteNote);
+router.delete("/delete/:id", ensureAuth, noteController.deleteNote);
 
 module.exports = router;

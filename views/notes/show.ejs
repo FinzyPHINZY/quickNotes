@@ -28,6 +28,17 @@
           <div class="row">
             <a href="/notes/edit/<%= note._id  %>" class="btn green">Edit</a>
             <a href="/notes" class="btn orange">Back</a>
+            <!-- To be Implemented: delete from show page -->
+            <!-- <form
+              action="/notes/delete/<%= note._id %>"
+              method="post"
+              id="delete-form"
+            >
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="btn-red">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form> -->
           </div>
         </div>
         <div class="col s12 m4">

@@ -103,15 +103,15 @@ module.exports = {
 
   deleteNote: async (req, res) => {
     try {
-      let story = await Story.findById({ _id: req.params.id });
-      if (!story) {
+      let note = await Note.findById({ _id: req.params.id });
+      if (!note) {
         res.render("error/404");
       }
 
-      if (story.user != req.user.id) {
+      if (note.user != req.user.id) {
         res.redirect("/notes");
       } else {
-        await Story.deleteOne({ _id: req.params.id });
+        await Note.deleteOne({ _id: req.params.id });
         res.redirect("/notes");
       }
     } catch (err) {
