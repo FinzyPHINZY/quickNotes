@@ -80,3 +80,9 @@ p {
 li div {
   margin-bottom: 1rem;
 }
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+}

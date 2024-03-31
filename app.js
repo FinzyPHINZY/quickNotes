@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const connectDB = require("./config/database");
+const methodOverride = require("method-override");
 const homeRoutes = require("./routes/home.js");
 const authRoutes = require("./routes/auth.js");
 const noteRoutes = require("./routes/note.js");
@@ -17,15 +18,23 @@ dotenv.config({ path: "./config/.env" });
 
 require("./config/passport.js")(passport);
 
-// Connect to Database
 connectDB();
 
-// Set View Engine
 app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  methodOverride(function (req, res) {
+    if (req.body && typeof req.body === "object" && "_method" in req.body) {
+      let method = req.body._method;
+      delete req.body._method;
+      return method;
+    }
+  })
+);
 
 app.use(
   session({
@@ -39,11 +48,9 @@ app.use(
   })
 );
 
-// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set global variable
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();

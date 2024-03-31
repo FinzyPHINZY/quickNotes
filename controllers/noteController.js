@@ -65,7 +65,7 @@ module.exports = {
         res.redirect("/notes");
       } else {
         res.render("notes/edit", {
-          story,
+          note,
         });
       }
     } catch (err) {
@@ -93,7 +93,7 @@ module.exports = {
           { new: true, runValidators: true }
         );
 
-        res.redirect("/index");
+        res.redirect("/notes");
       }
     } catch (err) {
       console.error(err);
@@ -109,10 +109,10 @@ module.exports = {
       }
 
       if (story.user != req.user.id) {
-        res.redirect("/stories");
+        res.redirect("/notes");
       } else {
         await Story.deleteOne({ _id: req.params.id });
-        res.redirect("/index");
+        res.redirect("/notes");
       }
     } catch (err) {
       console.error(err);

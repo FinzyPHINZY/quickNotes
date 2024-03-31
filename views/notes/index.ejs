@@ -25,7 +25,7 @@
         <% notes.forEach(note => { %>
         <li>
           <div>
-            <span
+            <span class="title"
               ><strong><%- stripTags(truncate(note.title, 25)) %></strong></span
             >:
             <span><%- stripTags(truncate(note.body,150)) %></span>
