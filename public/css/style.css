@@ -76,3 +76,7 @@ select {
 p {
   margin: 10px 0;
 }
+
+li div {
+  margin-bottom: 1rem;
+}

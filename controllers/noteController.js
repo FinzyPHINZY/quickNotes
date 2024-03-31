@@ -1,4 +1,5 @@
 const Note = require("../models/Note");
+const { formatDate, truncate, stripTags } = require("../helpers/helper.js");
 
 module.exports = {
   showNotes: async (req, res) => {
@@ -8,6 +9,9 @@ module.exports = {
         .sort({ createdAt: "desc" });
       res.render("notes/index", {
         notes,
+        formatDate,
+        truncate,
+        stripTags,
       });
     } catch (err) {
       console.log(err);
@@ -32,12 +36,14 @@ module.exports = {
 
   showSingleNote: async (req, res) => {
     try {
-      let note = await Note.findById(req.params._id).populate("user");
+      console.log(req.params);
+      let note = await Note.findById(req.params.id).populate("user");
+      console.log(note);
 
       if (!note) {
         return res.render("error/404");
       }
-      res.render("notes/show", { note });
+      res.render("notes/show", { note, formatDate });
     } catch (err) {
       console.error(err);
       return res.render("error/404");

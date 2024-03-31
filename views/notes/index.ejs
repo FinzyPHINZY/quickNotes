@@ -24,11 +24,17 @@
       <ul>
         <% notes.forEach(note => { %>
         <li>
-          <p>
-            <span><%= note.body %></span>
-            <span><%= note.createdAt %></span>
+          <div>
+            <span
+              ><strong><%- stripTags(truncate(note.title, 25)) %></strong></span
+            >:
+            <span><%- stripTags(truncate(note.body,150)) %></span>
+            <span><%- formatDate(note.createdAt) %></span>
             <span><i class="fas fa-trash"></i></span>
-          </p>
+            <span>
+              <a href="/notes/<%= note._id %>" class="btn-grey">Read more</a>
+            </span>
+          </div>
         </li>
         <% }); %>
       </ul>
