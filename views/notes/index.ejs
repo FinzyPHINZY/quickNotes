@@ -18,32 +18,35 @@
   <body>
     <%- include('../partials/navBar') %> <%- include('../partials/addBtn') %>
     <div class="container">
-      <h6>Here are your notes</h6>
+      <!-- <h6>Here are your notes</h6> -->
 
       <% if (notes.length > 0) { %>
-      <ul>
+      <ul class="note-list">
         <% notes.forEach(note => { %>
-        <li>
+        <li class="note-item">
           <div>
             <span class="title"
               ><strong><%- stripTags(truncate(note.title, 25)) %></strong></span
             >:
-            <span><%- stripTags(truncate(note.body,150)) %></span>
-            <span><%- formatDate(note.createdAt) %></span>
-            <form
-              action="/notes/delete/<%= note._id %>"
-              method="post"
-              id="delete-form"
-            >
-              <input type="hidden" name="_method" value="DELETE" />
-              <button type="submit" class="btn-red">
-                <i class="fas fa-trash"></i>
-              </button>
-            </form>
+            <span> <%- stripTags(truncate(note.body,150)) %></span>
 
             <span>
               <a href="/notes/<%= note._id %>" class="btn-grey">Read more</a>
             </span>
+
+            <div class="date-del">
+              <p class="date"><%- formatDate(note.createdAt) %></p>
+              <form
+                action="/notes/delete/<%= note._id %>"
+                method="post"
+                id="delete-form"
+              >
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn-red">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </li>
         <% }); %>
